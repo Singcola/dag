@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project name="dag" default="build" basedir=".">
+    <property name="src" value="${basedir}/src/"/>
+    <property name="bin" value="${basedir}/bin/"/>
+    <property name="classpath" value="${bin}" />
+
+    <target name="info">
+        <echo>Hello World - Welcome to Apache Ant!</echo>
+    </target>
+
+    <target name="build">
+        <mkdir dir="${bin}" />
+        <javac includeantruntime="false"
+               srcdir="${src}"
+               destdir="${bin}"
+               debug="on"
+               source="1.8"
+        />
+    </target>
+
+    <target name="cli" depends="build, get-args">
+        <java classpath="${classpath}" classname="cli.CommandLineMain">
+            <arg line="${args}" />
+        </java>
+    </target>
+
+    <target name="get-args" unless="args">
+        <input addProperty="args" message="args:" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${bin}" />
+    </target>
+</project>
