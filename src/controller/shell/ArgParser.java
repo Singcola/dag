@@ -1,11 +1,12 @@
-package args;
+package controller.shell;
 
+import controller.shell.command.ICommand;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class ArgParser {
+public class ArgParser implements ICommand {
     public static void main(String[] args) {
         System.out.println(ArgParser.class);
         for (int i = 0; i < args.length; i++) {
@@ -30,4 +31,10 @@ public class ArgParser {
         cargs = matchList.toArray(cargs);
         return cargs;
     }
+
+    public void execute(model.DAG dag, String[] args) {
+        ArgParser.main(args);
+    }
+    public String getName() { return "args"; }
+    public String getDescription() { return "Echoes the arguments given"; }
 }

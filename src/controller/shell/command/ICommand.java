@@ -1,4 +1,4 @@
-package command;
+package controller.shell.command;
 
 public interface ICommand {
     void execute(model.DAG dag, String[] args);

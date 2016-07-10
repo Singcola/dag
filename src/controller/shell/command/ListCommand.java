@@ -1,4 +1,4 @@
-package command;
+package controller.shell.command;
 
 public class ListCommand implements ICommand {
     private CommandManager manager;

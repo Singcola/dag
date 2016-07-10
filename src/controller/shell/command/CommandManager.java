@@ -1,4 +1,4 @@
-package command;
+package controller.shell.command;
 
 import java.util.Formatter;
 import java.util.Locale;

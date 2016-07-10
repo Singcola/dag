@@ -23,6 +23,7 @@
                debug="on"
                source="1.8">
 			<classpath refid="my.classpath" />
+            <compilerarg value="-Xlint:unchecked" />
         </javac>
     </target>
 
