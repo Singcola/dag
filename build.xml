@@ -2,7 +2,14 @@
 <project name="dag" default="build" basedir=".">
     <property name="src" value="${basedir}/src/"/>
     <property name="bin" value="${basedir}/bin/"/>
-    <property name="classpath" value="${bin}" />
+    <property name="lib" value="${basedir}/lib/"/>
+    <!-- <property name="classpath" value="${bin}" /> -->
+
+    <path id="my.classpath">
+        <fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
 
     <target name="info">
         <echo>Hello World - Welcome to Apache Ant!</echo>
@@ -14,8 +21,9 @@
                srcdir="${src}"
                destdir="${bin}"
                debug="on"
-               source="1.8"
-        />
+               source="1.8">
+			<classpath refid="my.classpath" />
+        </javac>
     </target>
 
     <target name="cli" depends="build, get-args">

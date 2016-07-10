@@ -6,6 +6,7 @@ import command.CommandManager;
 import command.ListCommand;
 import model.DAG;
 import java.util.Scanner;
+import com.google.gson.Gson;
 
 public class CommandLineMain {
     private static Scanner scan;
