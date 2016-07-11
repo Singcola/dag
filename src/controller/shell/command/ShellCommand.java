@@ -1,7 +1,7 @@
 package controller.shell.command;
 
 import controller.shell.Shell;
-import model.DAG;
+import model.Model;
 
 public class ShellCommand implements ICommand {
     private Shell shell;
@@ -16,7 +16,7 @@ public class ShellCommand implements ICommand {
         this.cmds = cmds;
     }
 
-    public void execute(DAG dag, String[] args) {
+    public void execute(Model dag, String[] args) {
         System.out.println("running execute for shell command");
         Shell child = (args.length > 1 ?
             new Shell(shell.getScanner(), cmds, shell, args[1]) :

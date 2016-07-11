@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import model.Model;
 
 public class ArgParser implements ICommand {
     public static void main(String[] args) {
@@ -32,7 +33,7 @@ public class ArgParser implements ICommand {
         return cargs;
     }
 
-    public void execute(model.DAG dag, String[] args) {
+    public void execute(Model dag, String[] args) {
         ArgParser.main(args);
     }
     public String getName() { return "args"; }

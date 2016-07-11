@@ -1,11 +1,9 @@
 package controller.shell.command;
 
-import java.util.Formatter;
-import java.util.Locale;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class CommandManager extends TreeMap<String, ICommand> {
+    private static final long serialVersionUID = 1L;
 
     public void registerCommand(ICommand command) {
         this.put(command.getName(), command);

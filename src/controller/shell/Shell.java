@@ -1,10 +1,14 @@
 package controller.shell;
 
-import controller.shell.ArgParser;
-import controller.shell.command.*;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
+
+import controller.shell.command.AddTaskCommand;
+import controller.shell.command.CommandManager;
+import controller.shell.command.DefaultExitCommand;
+import controller.shell.command.DisplayTasksCommand;
+import controller.shell.command.ListCommand;
+import controller.shell.command.ShellCommand;
+import model.Model;
 
 public class Shell {
     private static int idgen = 0;
@@ -22,22 +26,10 @@ public class Shell {
         cmds.registerCommand(new DefaultExitCommand(this));
     }
 
-    public Shell(Scanner scan) {
-        this(scan, new CommandManager());
-    }
-
-    public Shell(Scanner scan, String name) {
-        this(scan, new CommandManager(), null, name);
-    }
-
-    public Shell(Scanner scan, CommandManager extras) {
-        this(scan, extras, null);
-    }
-
-    public Shell(Scanner scan, CommandManager extras, Shell parent) {
-        this(scan, extras, parent, "def:0x" + Integer.toHexString(idgen++).toUpperCase());
-    }
-
+    public Shell(Scanner scan) { this(scan, new CommandManager()); }
+    public Shell(Scanner scan, String name) { this(scan, new CommandManager(), null, name); }
+    public Shell(Scanner scan, CommandManager extras) { this(scan, extras, null); }
+    public Shell(Scanner scan, CommandManager extras, Shell parent) { this(scan, extras, parent, "def:0x" + Integer.toHexString(idgen++).toUpperCase()); }
     public Shell(Scanner scan, CommandManager extras, Shell parent, String name) {
         this.scan = scan;
         this.parent = parent;
@@ -52,7 +44,7 @@ public class Shell {
 
     public void quit() { proceed = false; }
 
-    public void run(model.DAG dag) {
+    public void run(Model dag) {
         proceed = true;
         String line = "";
         do {
@@ -78,4 +70,12 @@ public class Shell {
         extras.forEach(cmds::putIfAbsent);
     }
 
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        CommandManager cmds = new CommandManager();
+        cmds.registerCommand(new AddTaskCommand());
+        cmds.registerCommand(new DisplayTasksCommand());
+        new Shell(scan, cmds, null, "main").run(new Model());
+        scan.close();
+    }
 }

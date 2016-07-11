@@ -1,9 +1,9 @@
 package model.command;
 
-import model.DAG;
+import model.Model;
 
 public interface ICommand {
-    void execute(DAG dag, DataTransfer data) throws BadDataTransferException;
+    void execute(Model dag, DataTransfer data) throws BadDataTransferException;
     String getName();
     String getDesc();
     DocData getDocs();

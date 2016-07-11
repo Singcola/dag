@@ -1,5 +1,7 @@
 package controller.shell.command;
 
+import model.Model;
+
 public class ListCommand implements ICommand {
     private CommandManager manager;
 
@@ -7,7 +9,7 @@ public class ListCommand implements ICommand {
         this.manager = manager;
     }
 
-    public void execute(model.DAG dag, String[] args) {
+    public void execute(Model dag, String[] args) {
         System.out.println("eligible commands");
         for (ICommand c : manager.values()) {
             System.out.printf("    %s -- %s\n", c.getName(), c.getDescription());

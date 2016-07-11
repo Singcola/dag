@@ -1,6 +1,7 @@
 package controller.shell.command;
 
 import controller.shell.Shell;
+import model.Model;
 
 public class DefaultExitCommand implements ICommand {
     private Shell shell;
@@ -9,7 +10,7 @@ public class DefaultExitCommand implements ICommand {
         this.shell = shell;
     }
 
-    public void execute(model.DAG dag, String[] args) {
+    public void execute(Model dag, String[] args) {
         shell.quit();
     }
 

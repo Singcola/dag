@@ -1,7 +1,8 @@
 package model.command;
 
 public class BadDataTransferException extends Exception {
-    private DataTransfer data;
+	private static final long serialVersionUID = 1L;
+	private DataTransfer data;
     private String message;
 
     public BadDataTransferException() {
